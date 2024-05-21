@@ -123,11 +123,11 @@ Hlavní metodiky řízení sw projektů jsou **prediktivní metodiky (e.g. RUP)*
     - **Požadavky**
         - use case diagram
     - **Analýza a návrh**
-        - sequence, collaboration diagrams
+        - sequence, collaboration diagrams, class diagram
     - **Implementace**
         - class, object, component diagrams
     - **Testování**
-        - use case, class, activity diagrams
+        - use case, class, activity diagrams, diagramy z ostatných fáz na nájedenie miest na testovanie
     - **Deployment**
         - deployment diagram
 
@@ -281,6 +281,20 @@ Viditelný celému týmu, na jednotlivých lístcích tasků je vidět i zpracov
 
 ## Údržba softwarových systémů, znovupoužitelnost
 
+- cena údržby je častokrát vyšší, než cena vývoje
+    - záleží na typu systému, jeho složitosti, kvalitě vývoje...
+    - v priebehu času z pravidla stúpa
+- údržba častokrát zahŕňa aj nové zmeny
+    - tie vedú k chybám
+    - počet chýb v systéme sa spravidla udržuje na konštantnej úrovni
+    - každý feature request s pravidla prinesie nové chyby
+- po čase sa oplatí celý systém zahodiť alebo prepísať
+    - program sa neustále mení, čo vedie k zložitejšiemu kódu
+    - zložitý kód je ťažko udržateľný
+- počet developerov na projekte častokrát nekoreluje s rýchlosťou dodania
+  - viac developerov znamená viac komunikácie, viac chýb, viac času na koordináciu
+  - viac developerov znamená aj viac chýb
+  - toto platí najmä pre oneskorené projekty
 - v závěru je fajn si udělat analýzu toho, co (ne)fungovalo, co zlepšit...
     - dosažená produktivita a kvalita
     - použitý proces, odchylky, důvody
