@@ -65,7 +65,7 @@ Existuje několik základních modelů
 
 - **Model výzkumník**
     - navrhni systém a implementuj ho. Vyhovuje? Super. Nevyhovuje? Zpět k návrhu/implementaci
-    - nelze pořádně řídit, neexistuje dokumentace, řešitelé jsou obtížně nahraditelní, jde o experimentování 
+    - nelze pořádně řídit, neexistuje dokumentace, řešitelé jsou obtížně nahraditelní, jde o experimentování
 
 - **V procesní model**
     - alá vodopád, ale zobrazuje i různé testy k fázím (jednotkové, integrační, systémové, uživatelské, akceptační...)
@@ -75,6 +75,7 @@ Nezávisle na modelu je důležité nastavit správnou komunikaci, definovat a p
 Hlavní metodiky řízení sw projektů jsou **prediktivní metodiky (e.g. RUP)** a **agilní (e.g. SCRUM)**.
 
 ## Metodika (Rational) Unified Process (UP, RUP)
+
 - rigidní, důraz na procesy
 - vhodná, pokud máme jasné a pevné požadavky, variabilní aspekty mohou být čas a zdroje
 - vyžaduje podstatné plánování předem
@@ -94,6 +95,7 @@ Hlavní metodiky řízení sw projektů jsou **prediktivní metodiky (e.g. RUP)*
     - složitý kontrakt, je třeba myslet na všechno (exhaustive kritéria přijetí, penále...)
 
 ![](img/20230523215135.png)
+
 - iterace jsou seskupovány do fází
     - **Inception** (1 iterace)
         - řešíme feasibilitu, zachycujeme klíčové požadavky, rizika
@@ -107,7 +109,7 @@ Hlavní metodiky řízení sw projektů jsou **prediktivní metodiky (e.g. RUP)*
         => **Project brief**
     - **Elaboration** (2 iterace)
         - řešíme požadavky, architekturu, hrajeme si s UML diagramy
-        - na konci máme architekturu, návrh systému reflektující požadavky 
+        - na konci máme architekturu, návrh systému reflektující požadavky
     - **Construction** (4 iterace)
         - tvoříme systém, testujeme, nasazujeme
         - na konci máme beta verzi, relativně stabilní a otestovanou, připravenou k použití
@@ -132,6 +134,7 @@ Hlavní metodiky řízení sw projektů jsou **prediktivní metodiky (e.g. RUP)*
 RUP je konkrétní metodika stavějící na UP (přidává třeba jednotlivé role a odpovědnosti v týmu, konkrétní postupy...), UP je obecný rámec
 
 ## Agilní metodiky a principy agilního vývoje SW
+
 - flexibilní, důraz na lidi
 - radši budeme reagovat na změnu, než se pevně držet plánu
 - snažíme se fixovat čas a zdroje, proměnlivá může být funkcionalita (*Postavili jsme dům a plot, v rozpočtu zbývají zdroje na garáž, nebo bazén. Co z toho chcete?*)
@@ -144,12 +147,13 @@ RUP je konkrétní metodika stavějící na UP (přidává třeba jednotlivé ro
 - face-to-face komunikace, rychlé meetingy - rychlejší, získáme lepší porozumění
 - jednoduchá dokumentace - dokumentace těžko udržuje tempo s realitou, proto ji držme co nejjednodušší, ideálně navázanou na kód
 - častá setkání se stakeholdery (sprint review), prezentace nové funkcionality (lepší, než jen popis)
-- e.g. 
+- e.g.
     - extreme programming - osvědčené postupy tahá do extrému (osvědčují se reviews? => dělej reviews co to jde)
         - párové programování, důraz na testy, refaktorizaci, kód je single source of truth (dokumentaci generujeme z kódu, používáme schéma pro generování ostatních věcí...)
         - rychlá zpětná vazba, důraz na jednoduchost, malé inkrementy
 
 ### SCRUM
+
 - nejčastěji využívaná agilní metodika
 - iterativní, inkrementální
 - jednoduchý, očekává se použití i dalších nástrojů/procesů
@@ -162,7 +166,7 @@ RUP je konkrétní metodika stavějící na UP (přidává třeba jednotlivé ro
     - **tým vývojářů** - 3-9 lidí, soběstačný (má lidi na všechno) a sebeorganizující se, spravují sprint backlog, zodpovědný za doručení produktu
 
 - artefakty
-    - **product backlog** 
+    - **product backlog**
         - obsahuje veškerou zbývající požadovanou funkcionalitu ve formě **user stories**
             - jednotka funkcionality, testovatelná, logický celek
             - každé story má:
@@ -175,18 +179,18 @@ RUP je konkrétní metodika stavějící na UP (přidává třeba jednotlivé ro
                     - Could - bylo by fajn
                     - Won't/Wish - zapomeň na to, možná jindy
             - pro testování je možné použít Gherkin/Cucumber (As a ... I can ... So that ...)
-            
+
         - tvořen celým scrum týmem, spravuje ho product owner
         - v praxi jde o tabuli (reálnou/virtuální) se sticky notes
-    
-    - **sprint backlog** 
+
+    - **sprint backlog**
         - část product backlogu (množina user stories), která se má provést v daném sprintu
         - stories jsou rozděleny na jednotlivé tasky, u každého je určen časový odhad v hodinách
         - task má fáze Todo, In progress a Done
         - tasky si k práci vybírají vývojáři dle vlastního uvážení, ale žádné (ani user stories) nemohou být v rámci sprintu přidány/odebrány
             - bylo by nutné zrušit celý sprint product ownerem
         - spravován týmem vývojářů
-    
+
     - **product increment**
         - všechny předměty product backlogu, které se splní během sprintu (a.k.a. to, co se za sprint stihne/udělá)
         - tvořen týmem vývojářů, testován zákazníkem, může být released product ownerem
@@ -222,7 +226,7 @@ RUP je konkrétní metodika stavějící na UP (přidává třeba jednotlivé ro
         - 3 hodiny, účastní se scrum team
         - řeší se procesy - rozložení práce, splnil se cíl, je třeba něco upravit?
         - řeší se vztahy - klapalo to? potřebuje někdo užší spolupráci?
-        - řeší se nástroje - dobrá komunikace? dostatečná transparentnost? 
+        - řeší se nástroje - dobrá komunikace? dostatečná transparentnost?
         - řeší se lidi - měl někdo trable? někoho pochválíme?
         - co nefungovalo, co můžeme zlepšit
         - ideálně se vymyslí jedno zlepšení procesů, které se v příštím sprintu bude používat
@@ -247,10 +251,12 @@ RUP je konkrétní metodika stavějící na UP (přidává třeba jednotlivé ro
 - balancuje se Čas, Cena a Rozsah funkcionalit
 
 #### Burndown chart
+
 - Ukazuje kolik práce zbývá a jak si vedeme oproti plánu
 ![](img/20230525221317.png)
 
 #### Team velocity
+
 - dokončené story pointy za sprint, je vidět v Burndown Chartu v dy/dx, nebo jako samostatná křivka
 ![](img/20230525221638.png)
 
@@ -265,6 +271,7 @@ Viditelný celému týmu, na jednotlivých lístcích tasků je vidět i zpracov
 ![](img/20230525224009.png)
 
 ## Nasazení a provoz softwarových systémů
+
 - před nasazením je důležité systém otestovat v prostředí, které bude co nejbližší tomu produkčnímu
 - klíčové je v provozu logování událostí (abychom v případě chyby věděli, co se v systému dělo), monitoring, systém zpětné vazby
 - nasazení zahrnuje přípravu prostředí (instalace os, databází...), lze automatizovat/zjednodušit použitím Platform as a Service, případně kubernetes
@@ -273,6 +280,7 @@ Viditelný celému týmu, na jednotlivých lístcích tasků je vidět i zpracov
 - součástí nasazení může být i customizace systému pro specifické potřeby zákazníka (pokud to náš systém umožňuje)
 
 ## Údržba softwarových systémů, znovupoužitelnost
+
 - v závěru je fajn si udělat analýzu toho, co (ne)fungovalo, co zlepšit...
     - dosažená produktivita a kvalita
     - použitý proces, odchylky, důvody
