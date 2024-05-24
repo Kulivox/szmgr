@@ -37,7 +37,7 @@ U batch processingu můžeme distribuovat pomocí jednotlivých jobs, řeší se
 
 Stream e.g. Apache Kafka
 
-**MapReduce** - k transformaci dat používáme operace MAP (transformace dat 1:1) a REDUCE (sumarizace dat N:1). MAPery lze triviálně paralelizovat (stejné i rozdílné operace), u REDUCErů je to trochu složitější, paralelizujeme rozdílné operace. E.g. Apache Hadoop
+**MapReduce** - k transformaci dat používáme operace MAP (transformace dat 1:1) a REDUCE (sumarizace dat N:1). MAPery lze triviálně paralelizovat (stejné i rozdílné operace), u REDUCErů je paralelizácia dosiahnutá tým, že výsledky mappingu sú agregované a umiestnené na workera ktorý vykonáva reduce => môžeme mať veľké množstvo reducer workerov
 
 
 ## Rozdíl mezi centralizovanou a distribuovanou architekturou systému, nevýhody obojího a jejich překonávání
