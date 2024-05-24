@@ -110,6 +110,19 @@ Do zpráv je možné přidat identitu challengera, abychom předešli man in the
 - Nový klíč lze předat zašifrovaný. Lze opatřit časovým razítkem, nebo spojit s náhodným číslem od parťáka, abychom předešli útoku přehráním.
 - Tady máš náhodné číslo. Náš nový klíč je toto číslo zašifrované starým klíčem (je fajn si poslat kontrolní zprávu s informací šifrovanou novým klíčem)
 
+**Kerberos**
+- Protokol pre správu a distribúciu symetrických kľúčov v systéme
+- Autentizačný server udržuje symetrický kľúč s každým členom systému
+- Dva módy
+    - Distribučný
+        - Server generuje session keys na vyžiadanie komunikácie medzi dvoma stranami
+        - Server keys distribuuje keys
+    - Translačný
+        - Server distribuje dodané kľúče
+- Ak chce klient A komunikovať s klientom B, musí si za pomoci symetrického kľúča zdieľaného s auth servrom u auth servra vygenerovať session key.
+    - Session key má platnosť danú istým časovým intervalom.
+    - Je poslaný dva krát, každý raz s inými auth informáciami a zašifrovaný sym. key klienta A a B, tak, aby to mohli prečítať iba oni
+
 **Ustanovení klíče bez předchozího sdíleného tajemství**
 - **Shamirův protokol**
     - Vyžaduje komutativní šifru, kde platí `E_a( E_b( X ) ) = E_b( E_a( X ) )`
