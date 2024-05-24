@@ -155,7 +155,13 @@ Základní typy práv (obvykle specifikovatelná pro každou jednotku dat, e.g. 
 - execute (spouštění programu)
 - pokročilejší příznaky mohou být třeba append only soubor
 
-Práva mohou být specifikována v matici (jedna osa soubory, druhá uživatelé, uprostřed práva), ale může být nepřehledná -> práva lze ukládat v metadatech daného objektu - **Access Control List (ACL)** (ale těžko se zas hledá, k čemu všemu má daný uživatel přístup).
+Práva mohou být specifikována:
+- v matici (jedna osa soubory, druhá uživatelé, uprostřed práva),
+    - ale může být příliš velká
+- práva lze ukládat v metadatech daného objektu - **Access Control List (ACL)**
+    - implementované prakticky vo všetkých moderných unixoch
+    - možné priraďovať práva konkrétnym uživateľom a skupinám, ACL udržované pri súbore
+    - Ťěžko se zas hledá, k čemu všemu má daný uživatel přístup
 
 Přístup k objektu
 - může být omezený časem, místem, intervalem hodnot, typem služby... 
@@ -163,20 +169,35 @@ Přístup k objektu
 
 V unix systémech bývá obvykle nějaký superadmin/root, který má přístup ke všemu. Dobrou politikou je snaha o omezení práv tohoto uživatele a vytvoření skupin pro příslušné skupiny dat/objektů - pokud se hacker dostane k rootu, je vše v pytli. Moderní unixové systémy (obvykle komerční verze) nabízí jemnější granularitu nad skupinami, právy uživatelů...
 
-Good practices řízení přístupu
+**Linux capabilities**
+
+- V tradičných unix systémoch buď user je Root, alebo nie je a má obmedzené práva
+- Klasicky sa problém toho, že program potrebuje nejaké root capabilities riešil pomocou SUID / SGUID bitu -> proces bežal pod rootom i keď ho spúšťal obyč. užývateľ
+- Niektoré programy potrebujú iba podmnožinu práv roota, napr. možnosť otvoriť sockety s číslom < 1000 -> linux capabilities
+
+**Good practices řízení přístupu**
 - separace oprávnění - potvrzení důležité operace vícero aktéry
 - omezení práv jednotlivce - každý má přístup jen k tomu, co nutně potřebuje = _princip nejnižších privilegií_
-- defaultní akce je zamítnutí - práva přidělujeme explicitním povolením, abychom nepodolili něco jen proto, že jsme zapomněli vzít v potaz určitý scénář, defaultně zamítneme vša a používáme whitelisty (e.g. firewall)
+- **default deny** => defaultní akce je zamítnutí - práva přidělujeme explicitním povolením, abychom nepodolili něco jen proto, že jsme zapomněli vzít v potaz určitý scénář, defaultně zamítneme vša a používáme whitelisty (e.g. firewall)
 
 **Multi-level systems (MLS)**
 - do systému mají přístup všichni uživatelé, data jim zobrazujeme/umožňujeme používat objekty dle jejich úrovně (nižším úrovním skrýváme to, co mohou vidět vyšší úrovně)
 - role jsou hierarchické
+- príkladom je systém Bell-LaPadula
+    - Subjekty a objekty patria do rôznych bezpečnostných úrovní - Top Secret, Classified, etc.
+    - systém je považovaný za bezpečný pokiaľ je v bezpečnom stave
+        - systém je modelovaný ako stavový automat, kde operácie zápisu / čítania sú prechody
+        - pokiaľ je porušené niektoré z daných pravidiel, systém sa dostane do nezabezpečeného stavu
+    - pravidlá
+        - no write down => neleakujeme data tak ze ich ukazeme menej opravnenym
+        - no read up => menej opravneny by nemali citat tajne
+        - discretionary (voliteľný) access => na objektoch môžu byť ešte ACL, tie musia byť tiež rešpektované. Pri vyhodnocovani pristupu sa tieto pravidla vyhodnocuju ako posledne => ak nemam moznost ciatat kvoli security level, tak je jedno ze som v ACL, aj tak to neprecitam
 - problémem může být **skrytý kanál**
     - mechanismus, který není určen ke komunikaci je využit pro získání informací
     - e.g. zátěž procesoru, zaplnění disku, čas posledního přístupu k souboru
     - e.g. nemožnost vytvořit soubor (indikuje, že soubor se stejným jménem už existuje, jen je nám skrytý)/vložit hodnotu do databáze 
         => máme automatizované schéma pro pojmenovávání
-
+- problémy tiež spôsobuje náročnosť vývoja, problémy pri zmenách klasifikácie (pri znižovaní, zvyšovanie býva vačšinou OK), alebo pri integrácii rôznorodých MLS
 **Role-based access control (RBAC)**
 - uživatelům přiřazujeme role (i vícero)
 - na role navazujeme oprávnění
@@ -300,7 +321,10 @@ Některé algoritmy umožňují obnovu dat na základě podpisu (v podpisu jsou 
 - slouží k vzdálenému přihlášení k serveru
 - oproti telnetu je komunikace šifrovaná (symetrickou šifrou, klíč se stanoví po handshake)
 - probíhá autentizace serveru i klienta (určitě jste si někdy generovali key pair pomocí `ssh-keygen`, tak to bylo ono)
-- používá se pro to třeba RSA, DSA (asymetrická kryptografie)
+    - autentizácia servru je pomocou public key (**nie** X509 cert.)
+        - Ak sa pubkey medzi prihláseniami neočakávane zmení, SSH client upozorní, že hrozí man-in-the-middle attack alebo niekto prevzal kontrolu nad servrom
+    - ssh taktiež zaručuje integritu dát
+- používá se pro to třeba RSA, DSA (asymetrická kryptografie), súbor hosts alebo Kerberos. Heslá sú tiež podporované
 
 **Security Assertion Markup Language (SAML)**
 - standard pro popis a výměnu autentizačních dat
@@ -349,6 +373,7 @@ Typické chyby
 - **Buffer overflow** - v paměti máme pole a za ním data. Pokud provedeme zápis do pole a zapisovaná data jsou delší než pole (a neohlídáme si délku), mohou nám zapisovaná data přepsat i data za polem. Ovlivňuje hlavně C/C++.
 - **Buffer overread** - jako buffer overflow, ale se čtením - jsme schopní číst i data za polem
 - použití neinicializované paměti (po malloc), nebo uvolněného ukazatele (po free)
+- **Double free** - corruption dátovej štruktúry udržujúcej informácie o alokovanej pamät
 - **Stack exhaustion** - vyplýtvání místa na zásobníku, typicky kvůli velké rekurzi
 - **Heap exhaustion** - vyplýtvání místa na haldě, není možné alokovat další paměť (může být způsobeno memory leaky, nebo velkou paměťovou náročností programu)
 - **Type overflow** - přetečení hodnoty. E.g. int overflow; způsobeno `i64::MAX + 1`, výsledek je 0
