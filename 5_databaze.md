@@ -217,6 +217,8 @@ Transakce v RDBMS mají ACID vlastnosti
 
 Transakce se potvrzují příkazem `COMMIT`, vrací příkazem `ROLLBACK` na stav před započením transakce, či po poslední `SAVEPOINT` 
 
+
+![Isolation levels](/img/isolation-levels.png)
 ## Indexování
 
 Index slouží ke zrychlení/zefektivnění častých dotazů nad tabulkou. Dotazy obsahující zvolený sloupec (či jejich kombinaci) budou rychlejší.
