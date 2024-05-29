@@ -53,7 +53,7 @@
     - asynchronní komunikace/zpracování
     - detekce a mitigace bottlenecků
     - odstranění adaptérů, zjednodušení komunikace
-    - separace dat od logiky
+    - separace dat od logiky - ! týmto je myslené, že statické dáta a dokuemnty by sme mali poskytovať iným kanálom než kanálom našej business logiky -> caching, CDN, atď. !
 - **Spolehlivost** 
     - detekce a náprava zdrojů nespolehlivosti
     - kontrolní mechanismy pro zajištění spolehlivosti
