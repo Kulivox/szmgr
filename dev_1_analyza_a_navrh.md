@@ -307,8 +307,8 @@ Diagram tříd, ale neřešíme datové typy ani metody. Zajímají nás klíčo
 Statická reprezentace systému ve formě tříd, zobrazuje jejich metody, atributy a vzájemnou provázanost. Vztahy mají kardinalitu
 
 **Asociace** - klasická šipka (nebo čára pro oboustranný vztah), popisuje vztah daných tříd
-**Agregace** - bílý kosočtverec, popisuje, že třída obsahuje jinou třídu (u ní je kosočtverec)
-**Kompozice** - černý kosočtverec, popisuje, že třída (s kosočtvercem) je nedílnou součástí jiné třídy
+**Agregace** - bílý kosočtverec, popisuje, že třída obsahuje jinou třídu, respektíve kolekciu objektov tejto triedy. Trieda pri ktorej je kosoštvorec **nespravuje** životný cyklus druhej triedy.
+**Kompozice** - černý kosočtverec, popisuje, že třída je nedílnou součástí jiné třídy. Trieda pri ktorej je kosoštvorec spravuje životný cyklus druhej triedy.
 
 ![](img/20230608120634.png)
 
